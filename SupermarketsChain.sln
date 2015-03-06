@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketsChain.Models", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketsChain.Data", "SupermarketsChain.Data\SupermarketsChain.Data.csproj", "{17904A00-F63C-49F2-82E4-6BACAC962924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadExpencesFromXml", "LoadExpencesFromXml\LoadExpencesFromXml.csproj", "{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{17904A00-F63C-49F2-82E4-6BACAC962924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17904A00-F63C-49F2-82E4-6BACAC962924}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17904A00-F63C-49F2-82E4-6BACAC962924}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
