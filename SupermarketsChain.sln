@@ -5,6 +5,12 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopulateOracleDb", "PopulateOracleDb\PopulateOracleDb.csproj", "{05ABF3F8-935E-4D86-BBB9-58EDED9F393D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketsChain.Models", "SupermarketsChain.Models\SupermarketsChain.Models.csproj", "{0605DDBB-423B-4D4F-B7C1-9B225DCA7C7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupermarketsChain.Data", "SupermarketsChain.Data\SupermarketsChain.Data.csproj", "{17904A00-F63C-49F2-82E4-6BACAC962924}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadExpencesFromXml", "LoadExpencesFromXml\LoadExpencesFromXml.csproj", "{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{05ABF3F8-935E-4D86-BBB9-58EDED9F393D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05ABF3F8-935E-4D86-BBB9-58EDED9F393D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05ABF3F8-935E-4D86-BBB9-58EDED9F393D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0605DDBB-423B-4D4F-B7C1-9B225DCA7C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0605DDBB-423B-4D4F-B7C1-9B225DCA7C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0605DDBB-423B-4D4F-B7C1-9B225DCA7C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0605DDBB-423B-4D4F-B7C1-9B225DCA7C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17904A00-F63C-49F2-82E4-6BACAC962924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17904A00-F63C-49F2-82E4-6BACAC962924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17904A00-F63C-49F2-82E4-6BACAC962924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17904A00-F63C-49F2-82E4-6BACAC962924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7F934D8-14C0-40FD-B6FE-2D2A3200B558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
