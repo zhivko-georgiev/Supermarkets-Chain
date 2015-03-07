@@ -23,6 +23,11 @@
                     {
                         expense.Vendor = existingVendor;
                     }
+                    else
+                    {
+                        db.Vendors.Add(expense.Vendor);
+                        db.SaveChanges();
+                    }
                 }
 
                 db.Expenses.AddRange(expenses);
