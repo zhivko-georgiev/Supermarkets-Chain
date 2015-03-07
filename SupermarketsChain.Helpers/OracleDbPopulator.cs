@@ -1,12 +1,12 @@
-﻿namespace PopulateOracleDb
+﻿namespace SupermarketsChain.Helpers
 {
     using System;
     using System.IO;
     using Oracle.ManagedDataAccess.Client;
 
-    public class PopulateOracleDb
+    public class OracleDbPopulator
     {
-        public static void Main()
+        public static void Populate()
         {
             var queries = File.ReadAllText(@"..\..\..\PopulateOracleDb.sql").Split(new[] { "\n\n", "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             var connection = new OracleConnection(Settings.Default.OracleConnectionString);
