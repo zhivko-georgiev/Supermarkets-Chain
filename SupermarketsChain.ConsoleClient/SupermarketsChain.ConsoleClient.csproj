@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml.Linq" />
@@ -47,10 +48,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SupermarketsChain.Data\SupermarketsChain.Data.csproj">
+      <Project>{17904a00-f63c-49f2-82e4-6bacac962924}</Project>
+      <Name>SupermarketsChain.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SupermarketsChain.Helpers\SupermarketsChain.Helpers.csproj">
       <Project>{40d1b155-8f09-4c8b-908d-e6520b4530d8}</Project>
       <Name>SupermarketsChain.Helpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SupermarketsChain.Models\SupermarketsChain.Models.csproj">
+      <Project>{0605ddbb-423b-4d4f-b7c1-9b225dca7c7b}</Project>
+      <Name>SupermarketsChain.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
