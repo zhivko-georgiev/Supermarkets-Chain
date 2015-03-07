@@ -10,6 +10,7 @@
         public static void Main()
         {
             //OracleDbPopulator.Populate();
+            //XmlExpenseDataLoader.AddExpensesToDb();
         }
     }
 }

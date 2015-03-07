@@ -34,5 +34,29 @@ namespace SupermarketsChain.Helpers {
                 this["OracleConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\PopulateOracleDb.sql")]
+        public string OracleSqlScriptLocation {
+            get {
+                return ((string)(this["OracleSqlScriptLocation"]));
+            }
+            set {
+                this["OracleSqlScriptLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Sample-Vendor-Expenses.xml")]
+        public string XmlExpensesLocation {
+            get {
+                return ((string)(this["XmlExpensesLocation"]));
+            }
+            set {
+                this["XmlExpensesLocation"] = value;
+            }
+        }
     }
 }

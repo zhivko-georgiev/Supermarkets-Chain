@@ -5,5 +5,11 @@
     <Setting Name="OracleConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=localhost;User Id=TEAM_CRUX;Password=123;</Value>
     </Setting>
+    <Setting Name="OracleSqlScriptLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\PopulateOracleDb.sql</Value>
+    </Setting>
+    <Setting Name="XmlExpensesLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Sample-Vendor-Expenses.xml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

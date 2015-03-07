@@ -8,7 +8,8 @@
     {
         public static void Populate()
         {
-            var queries = File.ReadAllText(@"..\..\..\PopulateOracleDb.sql").Split(new[] { "\n\n", "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var queries = File.ReadAllText(Settings.Default.OracleSqlScriptLocation)
+                .Split(new[] { "\n\n", "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             var connection = new OracleConnection(Settings.Default.OracleConnectionString);
             connection.Open();
             using (connection)
