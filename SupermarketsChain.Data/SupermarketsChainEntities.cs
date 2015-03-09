@@ -21,5 +21,7 @@
         public DbSet<Sale> Sales { get; set; }
 
         public DbSet<Expense> Expenses { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
     }
 }
