@@ -16,7 +16,7 @@
 
         public virtual Product Product { get; set; }
 
-        public decimal? PricePerUnit { get; set; }
+        public decimal PricePerUnit { get; set; }
 
         [Required]
         [Column(TypeName = "Date")]

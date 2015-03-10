@@ -50,6 +50,21 @@
                 cell.PaddingBottom = 10f;
                 table.AddCell(cell);
 
+                // Query to the DB
+                var query = (
+                  from prod in db.Products
+                  join meas in db.Measures on prod.MeasureId equals meas.Id
+                  join sale in db.Sales on prod.Id equals sale.ProductId
+                  join loc in db.Locations on sale.LocationId equals loc.Id
+                  where sale.DateOfSale >= start && sale.DateOfSale <= end
+                  select new
+                  {
+                      productName = prod.Name,
+                      quantity = sale.Quantity,
+                      pricePerUnit = sale.PricePerUnit,
+                      location = loc.Name,
+                      total = sale.Quantity * sale.PricePerUnit
+                  });
 
                 doc.Add(table);
                 doc.Close();
