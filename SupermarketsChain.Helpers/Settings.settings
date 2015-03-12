@@ -9,7 +9,10 @@
       <Value Profile="(Default)">..\..\..\PopulateOracleDb.sql</Value>
     </Setting>
     <Setting Name="XmlExpensesLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\Sample-Vendor-Expenses.xml</Value>
+      <Value Profile="(Default)">..\..\..\Vendor-Expenses.xml</Value>
+    </Setting>
+    <Setting Name="SalesReportLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Aggregated-Sales-Report.pdf</Value>
     </Setting>
   </Settings>
 </SettingsFile>

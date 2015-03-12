@@ -49,13 +49,25 @@ namespace SupermarketsChain.Helpers {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Sample-Vendor-Expenses.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Vendor-Expenses.xml")]
         public string XmlExpensesLocation {
             get {
                 return ((string)(this["XmlExpensesLocation"]));
             }
             set {
                 this["XmlExpensesLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Aggregated-Sales-Report.pdf")]
+        public string SalesReportLocation {
+            get {
+                return ((string)(this["SalesReportLocation"]));
+            }
+            set {
+                this["SalesReportLocation"] = value;
             }
         }
     }

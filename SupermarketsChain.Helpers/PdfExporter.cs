@@ -6,198 +6,217 @@
     using iTextSharp.text;
     using iTextSharp.text.pdf;
     using SupermarketsChain.Data;
-    
+
     public class PdfExporter
     {
         public static void Export(string startDate, string endDate)
         {
-            using (var db = new SupermarketsChainEntities())
+            DateTime start = DateTime.Parse(startDate);
+            DateTime end = DateTime.Parse(endDate);
+            Export(start, end);
+        }
+
+        public static void Export(DateTime startDate, DateTime endDate)
+        {
+            using (var pdfDocument = new Document())
             {
-                DateTime start = DateTime.Parse(startDate);
-                DateTime end = DateTime.Parse(endDate);
+                var file = File.Create(Settings.Default.SalesReportLocation);
+                PdfWriter.GetInstance(pdfDocument, file);
+                pdfDocument.Open();
 
-                Document doc = new Document();
-                FileStream file = File.Create("../../../Aggregated-Sales-Report.pdf");
-                PdfWriter.GetInstance(doc, file);
-                doc.Open();
+                PdfPTable table = new PdfPTable(5)
+                {
+                    TotalWidth = 550f,
+                    LockedWidth = true
+                };
 
-                PdfPTable table = new PdfPTable(5);
-                table.TotalWidth = 550f;
-                table.LockedWidth = true;
-                float[] widths = new float[] { 150f, 70f, 70f, 230f, 70f };
-                table.SetWidths(widths);
+                table.SetWidths(new[] { 150f, 70f, 70f, 230f, 70f });
 
-                PdfPCell cell = new PdfPCell();
+                var baseFont = BaseFont.CreateFont("../../../verdana.ttf", BaseFont.CP1252, false);
+                var normalFont = new Font(baseFont, 10);
+                var boldFont = new Font(baseFont, 12, Font.BOLD);
+                var extraBoldFont = new Font(baseFont, 14, Font.BOLD);
 
-                BaseFont baseFont = BaseFont.CreateFont("../../../verdana.ttf", BaseFont.CP1252, false);
-                Font normal = new Font(baseFont, 10);
-                Font bold = new Font(baseFont, 12, Font.BOLD);
-                Font extraBold = new Font(baseFont, 14, Font.BOLD);
-
-                cell = new PdfPCell(new Phrase("Aggregated Sales Report", extraBold));
-                cell.Colspan = 5;
-                cell.HorizontalAlignment = 1;
-                cell.BackgroundColor = new BaseColor(255, 255, 255);
-                cell.PaddingTop = 10f;
-                cell.PaddingBottom = 10f;
-                table.AddCell(cell);
-
-                var query = (
-                     from prod in db.Products
-                     join meas in db.Measures on prod.MeasureId equals meas.Id
-                     join sale in db.Sales on prod.Id equals sale.ProductId
-                     join loc in db.Locations on sale.LocationId equals loc.Id
-                     where sale.DateOfSale >= start && sale.DateOfSale <= end
-                     select new
-                     {
-                         name = prod.Name,
-                         quantity = sale.Quantity,
-                         pricePerUnit = sale.PricePerUnit,
-                         location = loc.Name,
-                         dateOfSale = sale.DateOfSale,
-                         total = sale.Quantity * sale.PricePerUnit
-                     });
-
-                var dates = query.Select(x => x.dateOfSale).Distinct().ToList();
+                table.AddCell(new PdfPCell(new Phrase("Aggregated Sales Report", extraBoldFont))
+                {
+                    Colspan = 5,
+                    HorizontalAlignment = 1,
+                    BackgroundColor = new BaseColor(255, 255, 255),
+                    PaddingTop = 10f,
+                    PaddingBottom = 10f
+                });
 
                 decimal totalSum = 0m;
                 decimal grandTotal = 0m;
 
-                foreach (var date in dates)
+                using (var db = new SupermarketsChainEntities())
                 {
-                    cell = new PdfPCell(new Phrase("Date: " + date.ToString("d-MMM-yyyy"), bold));
-                    cell.Colspan = 5;
-                    cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                    cell.BackgroundColor = new BaseColor(242, 242, 242);
-                    cell.PaddingTop = 10f;
-                    cell.PaddingBottom = 10f;
-                    table.AddCell(cell);
+                    var dates = db.Sales
+                        .Select(sale => sale.DateOfSale)
+                        .Where(date => date >= startDate && date <= endDate)
+                        .Distinct()
+                        .ToList();
 
-                    cell = new PdfPCell(new Phrase("Product", bold));
-                    cell.Colspan = 1;
-                    cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                    cell.BackgroundColor = new BaseColor(217, 217, 217);
-                    cell.PaddingTop = 5f;
-                    cell.PaddingBottom = 5f;
-                    table.AddCell(cell);
-
-                    cell = new PdfPCell(new Phrase("Quantity", bold));
-                    cell.Colspan = 1;
-                    cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                    cell.BackgroundColor = new BaseColor(217, 217, 217);
-                    cell.PaddingTop = 5f;
-                    cell.PaddingBottom = 5f;
-                    table.AddCell(cell);
-
-                    cell = new PdfPCell(new Phrase("Unit Price", bold));
-                    cell.Colspan = 1;
-                    cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                    cell.BackgroundColor = new BaseColor(217, 217, 217);
-                    cell.PaddingTop = 5f;
-                    cell.PaddingBottom = 5f;
-                    table.AddCell(cell);
-
-                    cell = new PdfPCell(new Phrase("Location", bold));
-                    cell.Colspan = 1;
-                    cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                    cell.BackgroundColor = new BaseColor(217, 217, 217);
-                    cell.PaddingTop = 5f;
-                    cell.PaddingBottom = 5f;
-                    table.AddCell(cell);
-
-                    cell = new PdfPCell(new Phrase("Sum", bold));
-                    cell.Colspan = 1;
-                    cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                    cell.BackgroundColor = new BaseColor(217, 217, 217);
-                    cell.PaddingTop = 5f;
-                    cell.PaddingBottom = 5f;
-                    table.AddCell(cell);
-
-                    var products = query.Where(x => x.dateOfSale == date);
-
-                    foreach (var item in products)
+                    foreach (var date in dates)
                     {
-                        cell = new PdfPCell(new Phrase(item.name, normal));
-                        cell.Colspan = 1;
-                        cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cell.BackgroundColor = new BaseColor(255, 255, 255);
-                        cell.PaddingTop = 5f;
-                        cell.PaddingBottom = 5f;
-                        table.AddCell(cell);
+                        table.AddCell(new PdfPCell(new Phrase("Date: " + date.ToString("d-MMM-yyyy"), boldFont))
+                        {
+                            Colspan = 5,
+                            HorizontalAlignment = Element.ALIGN_LEFT,
+                            BackgroundColor = new BaseColor(242, 242, 242),
+                            PaddingTop = 10f,
+                            PaddingBottom = 10f
+                        });
 
-                        cell = new PdfPCell(new Phrase(item.quantity.ToString("F2"), normal));
-                        cell.Colspan = 1;
-                        cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cell.BackgroundColor = new BaseColor(255, 255, 255);
-                        cell.PaddingTop = 5f;
-                        cell.PaddingBottom = 5f;
-                        table.AddCell(cell);
+                        table.AddCell(new PdfPCell(new Phrase("Product", boldFont))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_LEFT,
+                            BackgroundColor = new BaseColor(217, 217, 217),
+                            PaddingTop = 5f,
+                            PaddingBottom = 5f
+                        });
 
-                        cell = new PdfPCell(new Phrase(item.pricePerUnit.ToString("F2"), normal));
-                        cell.Colspan = 1;
-                        cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cell.BackgroundColor = new BaseColor(255, 255, 255);
-                        cell.PaddingTop = 5f;
-                        cell.PaddingBottom = 5f;
-                        table.AddCell(cell);
+                        table.AddCell(new PdfPCell(new Phrase("Quantity", boldFont))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_LEFT,
+                            BackgroundColor = new BaseColor(217, 217, 217),
+                            PaddingTop = 5f,
+                            PaddingBottom = 5f
+                        });
 
-                        cell = new PdfPCell(new Phrase(item.location, normal));
-                        cell.Colspan = 1;
-                        cell.HorizontalAlignment = Element.ALIGN_LEFT;
-                        cell.BackgroundColor = new BaseColor(255, 255, 255);
-                        cell.PaddingTop = 5f;
-                        cell.PaddingBottom = 5f;
-                        table.AddCell(cell);
+                        table.AddCell(new PdfPCell(new Phrase("Unit Price", boldFont))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_LEFT,
+                            BackgroundColor = new BaseColor(217, 217, 217),
+                            PaddingTop = 5f,
+                            PaddingBottom = 5f
+                        });
 
-                        cell = new PdfPCell(new Phrase(item.total.ToString("F2"), normal));
-                        cell.Colspan = 1;
-                        cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        cell.BackgroundColor = new BaseColor(255, 255, 255);
-                        cell.PaddingTop = 5f;
-                        cell.PaddingBottom = 5f;
-                        table.AddCell(cell);
-                        
-                        totalSum += item.total;
+                        table.AddCell(new PdfPCell(new Phrase("Location", boldFont))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_LEFT,
+                            BackgroundColor = new BaseColor(217, 217, 217),
+                            PaddingTop = 5f,
+                            PaddingBottom = 5f
+                        });
+
+                        table.AddCell(new PdfPCell(new Phrase("Sum", boldFont))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_LEFT,
+                            BackgroundColor = new BaseColor(217, 217, 217),
+                            PaddingTop = 5f,
+                            PaddingBottom = 5f
+                        });
+
+                        var sales = db.Sales
+                            .Where(sale => sale.DateOfSale == date)
+                            .Select(sale => new
+                            {
+                                sale.Product.Name,
+                                sale.Quantity,
+                                sale.PricePerUnit,
+                                sale.DateOfSale,
+                                Location = sale.Location.Name,
+                                TotalValue = sale.Quantity * sale.PricePerUnit
+                            });
+
+                        foreach (var sale in sales)
+                        {
+                            table.AddCell(new PdfPCell(new Phrase(sale.Name, normalFont))
+                            {
+                                Colspan = 1,
+                                HorizontalAlignment = Element.ALIGN_LEFT,
+                                BackgroundColor = new BaseColor(255, 255, 255),
+                                PaddingTop = 5f,
+                                PaddingBottom = 5f
+                            });
+
+                            table.AddCell(new PdfPCell(new Phrase(sale.Quantity.ToString("F2"), normalFont))
+                            {
+                                Colspan = 1,
+                                HorizontalAlignment = Element.ALIGN_LEFT,
+                                BackgroundColor = new BaseColor(255, 255, 255),
+                                PaddingTop = 5f,
+                                PaddingBottom = 5f
+                            });
+
+                            table.AddCell(new PdfPCell(new Phrase(sale.PricePerUnit.ToString("F2"), normalFont))
+                            {
+                                Colspan = 1,
+                                HorizontalAlignment = Element.ALIGN_LEFT,
+                                BackgroundColor = new BaseColor(255, 255, 255),
+                                PaddingTop = 5f,
+                                PaddingBottom = 5f
+                            });
+
+                            table.AddCell(new PdfPCell(new Phrase(sale.Location, normalFont))
+                            {
+                                Colspan = 1,
+                                HorizontalAlignment = Element.ALIGN_LEFT,
+                                BackgroundColor = new BaseColor(255, 255, 255),
+                                PaddingTop = 5f,
+                                PaddingBottom = 5f
+                            });
+
+                            table.AddCell(new PdfPCell(new Phrase(sale.TotalValue.ToString("F2"), normalFont))
+                            {
+                                Colspan = 1,
+                                HorizontalAlignment = Element.ALIGN_RIGHT,
+                                BackgroundColor = new BaseColor(255, 255, 255),
+                                PaddingTop = 5f,
+                                PaddingBottom = 5f
+                            });
+
+                            totalSum += sale.TotalValue;
+                        }
+
+                        table.AddCell(new PdfPCell(new Phrase("Total sum for " + date.ToString("d-MMM-yyyy") + ":", boldFont))
+                        {
+                            Colspan = 4,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            BackgroundColor = new BaseColor(255, 255, 255),
+                            PaddingTop = 5f,
+                            PaddingBottom = 5f
+                        });
+
+                        table.AddCell(new PdfPCell(new Phrase(totalSum.ToString("F2"), boldFont))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            BackgroundColor = new BaseColor(255, 255, 255),
+                            PaddingTop = 5f,
+                            PaddingBottom = 5f
+                        });
+
+                        grandTotal += totalSum;
                     }
-
-                    cell = new PdfPCell(new Phrase("Total sum for " + date.ToString("d-MMM-yyyy"), bold));
-                    cell.Colspan = 4;
-                    cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                    cell.BackgroundColor = new BaseColor(255, 255, 255);
-                    cell.PaddingTop = 5f;
-                    cell.PaddingBottom = 5f;
-                    table.AddCell(cell);
-
-                    cell = new PdfPCell(new Phrase(totalSum.ToString("F2"), bold));
-                    cell.Colspan = 1;
-                    cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                    cell.BackgroundColor = new BaseColor(255, 255, 255);
-                    cell.PaddingTop = 5f;
-                    cell.PaddingBottom = 5f;
-                    table.AddCell(cell);
-
-                    grandTotal += totalSum;
-
                 }
 
-                cell = new PdfPCell(new Phrase("Grand Total:", extraBold));
-                cell.Colspan = 4;
-                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                cell.BackgroundColor = new BaseColor(180, 190, 231);
-                cell.PaddingTop = 5f;
-                cell.PaddingBottom = 5f;
-                table.AddCell(cell);
+                table.AddCell(new PdfPCell(new Phrase("Grand Total:", extraBoldFont))
+                {
+                    Colspan = 4,
+                    HorizontalAlignment = Element.ALIGN_RIGHT,
+                    BackgroundColor = new BaseColor(180, 190, 231),
+                    PaddingTop = 5f,
+                    PaddingBottom = 5f
+                });
 
-                cell = new PdfPCell(new Phrase(grandTotal.ToString("F2"), extraBold));
-                cell.Colspan = 1;
-                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                cell.BackgroundColor = new BaseColor(180, 190, 231);
-                cell.PaddingTop = 5f;
-                cell.PaddingBottom = 5f;
-                table.AddCell(cell);
+                table.AddCell(new PdfPCell(new Phrase(grandTotal.ToString("F2"), extraBoldFont))
+                {
+                    Colspan = 1,
+                    HorizontalAlignment = Element.ALIGN_RIGHT,
+                    BackgroundColor = new BaseColor(180, 190, 231),
+                    PaddingTop = 5f,
+                    PaddingBottom = 5f
+                });
 
-                doc.Add(table);
-                doc.Close();
+                pdfDocument.Add(table);
+                pdfDocument.Close();
             }
         }
     }
