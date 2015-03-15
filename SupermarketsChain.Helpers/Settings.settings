@@ -14,5 +14,8 @@
     <Setting Name="SalesReportLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">..\..\..\Aggregated-Sales-Report.pdf</Value>
     </Setting>
+    <Setting Name="XmlSalesByVendorLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Sales-by-Vendors-Report.xml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -61,6 +61,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="XmlExpenseDataLoader.cs" />
+    <Compile Include="XmlSalesByVendorGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

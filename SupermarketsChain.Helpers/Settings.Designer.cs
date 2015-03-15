@@ -70,5 +70,17 @@ namespace SupermarketsChain.Helpers {
                 this["SalesReportLocation"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Sales-by-Vendors-Report.xml")]
+        public string XmlSalesByVendorLocation {
+            get {
+                return ((string)(this["XmlSalesByVendorLocation"]));
+            }
+            set {
+                this["XmlSalesByVendorLocation"] = value;
+            }
+        }
     }
 }
