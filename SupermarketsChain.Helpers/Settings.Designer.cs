@@ -37,7 +37,7 @@ namespace SupermarketsChain.Helpers {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\PopulateOracleDb.sql")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Populate-Oracle-Db.sql")]
         public string OracleSqlScriptLocation {
             get {
                 return ((string)(this["OracleSqlScriptLocation"]));
@@ -49,7 +49,7 @@ namespace SupermarketsChain.Helpers {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Vendor-Expenses.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Vendor-Expenses.xml")]
         public string XmlExpensesLocation {
             get {
                 return ((string)(this["XmlExpensesLocation"]));
@@ -61,25 +61,37 @@ namespace SupermarketsChain.Helpers {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Aggregated-Sales-Report.pdf")]
-        public string SalesReportLocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Aggregated-Sales-Report.pdf")]
+        public string PdfSalesReportLocation {
             get {
-                return ((string)(this["SalesReportLocation"]));
+                return ((string)(this["PdfSalesReportLocation"]));
             }
             set {
-                this["SalesReportLocation"] = value;
+                this["PdfSalesReportLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Sales-by-Vendors-Report.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Sales-by-Vendors-Report.xml")]
         public string XmlSalesByVendorLocation {
             get {
                 return ((string)(this["XmlSalesByVendorLocation"]));
             }
             set {
                 this["XmlSalesByVendorLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Verdana.ttf")]
+        public string VerdanaFontLocation {
+            get {
+                return ((string)(this["VerdanaFontLocation"]));
+            }
+            set {
+                this["VerdanaFontLocation"] = value;
             }
         }
     }

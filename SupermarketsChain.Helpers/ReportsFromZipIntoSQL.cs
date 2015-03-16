@@ -7,7 +7,6 @@
     using SupermarketsChain.Data;
     using System.IO;
     using Ionic.Zip;
-    using Excel = Microsoft.Office.Interop.Excel;
     using System.Collections.Generic;
     using System.Data.OleDb;
 

@@ -6,16 +6,19 @@
       <Value Profile="(Default)">Data Source=localhost;User Id=TEAM_CRUX;Password=123;</Value>
     </Setting>
     <Setting Name="OracleSqlScriptLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\PopulateOracleDb.sql</Value>
+      <Value Profile="(Default)">..\..\..\Helper.Files\Populate-Oracle-Db.sql</Value>
     </Setting>
     <Setting Name="XmlExpensesLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\Vendor-Expenses.xml</Value>
+      <Value Profile="(Default)">..\..\..\Helper.Files\Vendor-Expenses.xml</Value>
     </Setting>
-    <Setting Name="SalesReportLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\Aggregated-Sales-Report.pdf</Value>
+    <Setting Name="PdfSalesReportLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Helper.Files\Aggregated-Sales-Report.pdf</Value>
     </Setting>
     <Setting Name="XmlSalesByVendorLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\Sales-by-Vendors-Report.xml</Value>
+      <Value Profile="(Default)">..\..\..\Helper.Files\Sales-by-Vendors-Report.xml</Value>
+    </Setting>
+    <Setting Name="VerdanaFontLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Helper.Files\Verdana.ttf</Value>
     </Setting>
   </Settings>
 </SettingsFile>

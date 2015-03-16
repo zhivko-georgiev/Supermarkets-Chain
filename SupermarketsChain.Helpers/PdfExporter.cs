@@ -7,20 +7,20 @@
     using iTextSharp.text.pdf;
     using SupermarketsChain.Data;
 
-    public class PdfExporter
+    public static class PdfExporter
     {
-        public static void Export(string startDate, string endDate)
+        public static void ExportSales(string startDate, string endDate)
         {
             DateTime start = DateTime.Parse(startDate);
             DateTime end = DateTime.Parse(endDate);
-            Export(start, end);
+            ExportSales(start, end);
         }
 
-        public static void Export(DateTime startDate, DateTime endDate)
+        public static void ExportSales(DateTime startDate, DateTime endDate)
         {
             using (var pdfDocument = new Document())
             {
-                var file = File.Create(Settings.Default.SalesReportLocation);
+                var file = File.Create(Settings.Default.PdfSalesReportLocation);
                 PdfWriter.GetInstance(pdfDocument, file);
                 pdfDocument.Open();
 
@@ -32,7 +32,7 @@
 
                 table.SetWidths(new[] { 150f, 70f, 70f, 230f, 70f });
 
-                var baseFont = BaseFont.CreateFont("../../../verdana.ttf", BaseFont.CP1252, false);
+                var baseFont = BaseFont.CreateFont(Settings.Default.VerdanaFontLocation, BaseFont.CP1252, false);
                 var normalFont = new Font(baseFont, 10);
                 var boldFont = new Font(baseFont, 12, Font.BOLD);
                 var extraBoldFont = new Font(baseFont, 14, Font.BOLD);
