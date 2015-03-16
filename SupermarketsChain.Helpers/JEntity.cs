@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SupermarketsChain.Helpers
+﻿namespace SupermarketsChain.Helpers
 {
     internal class JEntity
     {
