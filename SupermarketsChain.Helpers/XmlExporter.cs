@@ -10,15 +10,15 @@ namespace SupermarketsChain.Helpers
     {
         public static void ExportSales(string startDate, string endDate)
         {
-            DateTime start = DateTime.Parse(startDate);
-            DateTime end = DateTime.Parse(endDate);
+            var start = DateTime.Parse(startDate);
+            var end = DateTime.Parse(endDate);
             ExportSales(start, end);
         }
 
         public static void ExportSales(DateTime startDate, DateTime endDate)
         {
-            Encoding encoding = Encoding.GetEncoding("utf-8");
-            using (XmlTextWriter writer = new XmlTextWriter(Settings.Default.XmlSalesByVendorLocation, encoding))
+            var encoding = Encoding.GetEncoding("utf-8");
+            using (var writer = new XmlTextWriter(Settings.Default.XmlSalesByVendorLocation, encoding))
             {
                 writer.Formatting = Formatting.Indented;
                 writer.IndentChar = '\t';
@@ -29,42 +29,27 @@ namespace SupermarketsChain.Helpers
 
                 using (var db = new SupermarketsChainEntities())
                 {
-                    var vendors = db.Vendors.ToArray();
-                    var dates = db.Sales
-                        .Select(x => x.DateOfSale)
-                        .Where(x => x >= startDate && x <= endDate)
-                        .Distinct()
-                        .ToList();
-
-                    decimal total = 0m;
-
-                    foreach (var vendor in vendors)
+                    foreach (var vendor in db.Vendors.ToList())
                     {
                         writer.WriteStartElement("sale");
                         writer.WriteAttributeString("vendor", vendor.Name);
 
-                        foreach (var date in dates)
-                        {
-                            var productSales = db.Sales
-                                .Select(x =>
-                                    new
-                                    {
-                                        x.DateOfSale,
-                                        VendorId = x.Product.Vendor.Id,
-                                        TotalValue = x.Quantity * x.PricePerUnit
-                                    })
-                                .ToList();
-
-                            foreach (var productSale in productSales)
+                        var totalSalesSumByDate = db.Sales
+                            .Where(sale =>
+                                sale.Product.VendorId == vendor.Id &&
+                                sale.DateOfSale >= startDate &&
+                                sale.DateOfSale <= endDate)
+                            .OrderBy(sale => sale.DateOfSale)
+                            .GroupBy(sale => sale.DateOfSale)
+                            .Select(group => new
                             {
-                                if (vendor.Id == productSale.VendorId && productSale.DateOfSale == date)
-                                {
-                                    total += productSale.TotalValue;
-                                }
-                            }
+                                Date = group.Key,
+                                TotalSum = group.Sum(g => g.PricePerUnit * g.Quantity)
+                            });
 
-                            WriteSaleToVendor(writer, date, total);
-                            total = 0m;
+                        foreach (var sale in totalSalesSumByDate)
+                        {
+                            WriteSaleToVendor(writer, sale.Date, sale.TotalSum);
                         }
 
                         writer.WriteEndElement();

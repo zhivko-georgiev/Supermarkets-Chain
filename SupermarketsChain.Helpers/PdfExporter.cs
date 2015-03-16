@@ -11,8 +11,8 @@
     {
         public static void ExportSales(string startDate, string endDate)
         {
-            DateTime start = DateTime.Parse(startDate);
-            DateTime end = DateTime.Parse(endDate);
+            var start = DateTime.Parse(startDate);
+            var end = DateTime.Parse(endDate);
             ExportSales(start, end);
         }
 
