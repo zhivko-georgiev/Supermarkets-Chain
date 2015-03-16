@@ -4,7 +4,7 @@
     using System.IO;
     using Oracle.ManagedDataAccess.Client;
 
-    public class OracleDbPopulator
+    public static class OracleDbManager
     {
         public static void Populate()
         {
@@ -22,6 +22,10 @@
                     }
                 }
             }
+        }
+
+        public static void ExportToSqlServer()
+        {
         }
     }
 }

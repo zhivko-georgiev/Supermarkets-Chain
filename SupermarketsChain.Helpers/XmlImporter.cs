@@ -8,9 +8,9 @@
     using SupermarketsChain.Data;
     using SupermarketsChain.Models;
 
-    public class XmlExpenseDataLoader
+    public static class XmlImporter
     {
-        public static void AddExpensesToDb()
+        public static void ImportExpenses()
         {
             var expenses = ReadExpensesFromXml();
 

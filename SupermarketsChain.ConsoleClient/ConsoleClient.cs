@@ -9,8 +9,8 @@
     {
         public static void Main()
         {
-            //OracleDbPopulator.Populate();
-            //XmlExpenseDataLoader.AddExpensesToDb();
+            //OracleDbManager.Populate();
+            //XmlImporter.ImportExpenses();
             //PdfExporter.ExportSales("20-Jul-2014", "22-Jul-2014");
             //XmlExporter.ExportSales("20-Jul-2014", "22-Jul-2014");
             //ReportsFromZipIntoSQL.ExportSales();
