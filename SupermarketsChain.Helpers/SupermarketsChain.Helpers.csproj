@@ -63,8 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JEntity.cs" />
-    <Compile Include="JSONReport.cs" />
+    <Compile Include="JsonExporter.cs" />
     <Compile Include="OracleDbManager.cs" />
     <Compile Include="PdfExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

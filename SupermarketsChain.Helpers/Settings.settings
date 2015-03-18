@@ -20,5 +20,11 @@
     <Setting Name="VerdanaFontLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">..\..\..\Helper.Files\Verdana.ttf</Value>
     </Setting>
+    <Setting Name="MongoDbConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mongodb://localhost:27017</Value>
+    </Setting>
+    <Setting Name="DefaultDbName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SupermarketsChain</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -94,5 +94,29 @@ namespace SupermarketsChain.Helpers {
                 this["VerdanaFontLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mongodb://localhost:27017")]
+        public string MongoDbConnectionString {
+            get {
+                return ((string)(this["MongoDbConnectionString"]));
+            }
+            set {
+                this["MongoDbConnectionString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SupermarketsChain")]
+        public string DefaultDbName {
+            get {
+                return ((string)(this["DefaultDbName"]));
+            }
+            set {
+                this["DefaultDbName"] = value;
+            }
+        }
     }
 }
