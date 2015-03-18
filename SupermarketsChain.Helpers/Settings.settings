@@ -26,5 +26,8 @@
     <Setting Name="DefaultDbName" Type="System.String" Scope="User">
       <Value Profile="(Default)">SupermarketsChain</Value>
     </Setting>
+    <Setting Name="JsonReportsFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Helper.Files\Json-Reports\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

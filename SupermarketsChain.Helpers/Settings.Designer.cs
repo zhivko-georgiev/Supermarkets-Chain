@@ -118,5 +118,17 @@ namespace SupermarketsChain.Helpers {
                 this["DefaultDbName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Json-Reports\\")]
+        public string JsonReportsFolder {
+            get {
+                return ((string)(this["JsonReportsFolder"]));
+            }
+            set {
+                this["JsonReportsFolder"] = value;
+            }
+        }
     }
 }
