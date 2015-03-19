@@ -1,10 +1,10 @@
-namespace SupermarketsChain.Helpers
+namespace SupermarketsChain.Helpers.DataExporters
 {
     using System;
     using System.Linq;
     using System.Text;
     using System.Xml;
-    using SupermarketsChain.Data;
+    using Data;
 
     public static class XmlExporter
     {

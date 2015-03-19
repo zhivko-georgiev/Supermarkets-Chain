@@ -1,12 +1,12 @@
-﻿namespace SupermarketsChain.Helpers
+﻿namespace SupermarketsChain.Helpers.DataImporters
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Xml;
-    using SupermarketsChain.Data;
-    using SupermarketsChain.Models;
+    using Data;
+    using Models;
 
     public static class XmlImporter
     {

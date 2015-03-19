@@ -29,5 +29,11 @@
     <Setting Name="JsonReportsFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">..\..\..\Helper.Files\Json-Reports\</Value>
     </Setting>
+    <Setting Name="SqLiteSqlScriptLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Helper.Files\Populate-SqLite-Db.sql</Value>
+    </Setting>
+    <Setting Name="SqLiteConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=..\..\..\Helper.Files\SupermarketsChain.sqlite</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

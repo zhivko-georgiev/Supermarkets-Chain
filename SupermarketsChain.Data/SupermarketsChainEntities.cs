@@ -1,15 +1,14 @@
 namespace SupermarketsChain.Data
 {
     using System.Data.Entity;
-    using SupermarketsChain.Models;
     using Migrations;
+    using Models;
 
     public class SupermarketsChainEntities : DbContext
     {
         public SupermarketsChainEntities()
             : base("SupermarketsChainConnection")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SupermarketsChainEntities, Configuration>());
         }
 
         public DbSet<Measure> Measures { get; set; }

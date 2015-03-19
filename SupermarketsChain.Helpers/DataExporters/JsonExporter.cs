@@ -1,14 +1,13 @@
-﻿namespace SupermarketsChain.Helpers
+﻿namespace SupermarketsChain.Helpers.DataExporters
 {
     using System;
-    using System.Linq;
-    using System.IO;
     using System.Collections.Generic;
-
-    using SupermarketsChain.Data;
-    using SupermarketsChain.Models;
-    using Newtonsoft.Json;
+    using System.IO;
+    using System.Linq;
+    using Data;
+    using Models;
     using MongoDB.Driver;
+    using Newtonsoft.Json;
 
     public static class JsonExporter
     {
@@ -21,9 +20,9 @@
 
         public static void ExportSalesToMongoDb(DateTime startDate, DateTime endDate)
         {
-            var mongoCLient = new MongoClient(Settings.Default.MongoDbConnectionString);
-            var mongoDb = mongoCLient.GetServer().GetDatabase(Settings.Default.DefaultDbName);
-            var mongoSales = mongoDb.GetCollection<JsonSale>("SalesByProductReports");
+            var mongoClient = new MongoClient(Settings.Default.MongoDbConnectionString);
+            var mongoDb = mongoClient.GetServer().GetDatabase(Settings.Default.DefaultDbName);
+            var mongoSales = mongoDb.GetCollection<ProductTotalSale>("SalesByProductReports");
             var salesByProduct = GetSalesByProduct(startDate, endDate);
             mongoSales.InsertBatch(salesByProduct);
         }
@@ -38,7 +37,6 @@
         public static void ExportSalesToJson(DateTime startDate, DateTime endDate)
         {
             Directory.CreateDirectory(Settings.Default.JsonReportsFolder);
-
             var salesByProduct = GetSalesByProduct(startDate, endDate);
             foreach (var sale in salesByProduct)
             {
@@ -48,7 +46,7 @@
             }
         }
 
-        private static IEnumerable<JsonSale> GetSalesByProduct(DateTime startDate, DateTime endDate)
+        private static IEnumerable<ProductTotalSale> GetSalesByProduct(DateTime startDate, DateTime endDate)
         {
             using (var sqlServerDb = new SupermarketsChainEntities())
             {
@@ -60,7 +58,7 @@
                         ProductName = sale.Product.Name,
                         VendorName = sale.Product.Vendor.Name
                     })
-                    .Select(group => new JsonSale
+                    .Select(group => new ProductTotalSale
                     {
                         ProductId = group.Key.ProductId,
                         ProductName = group.Key.ProductName,

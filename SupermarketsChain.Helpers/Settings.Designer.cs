@@ -130,5 +130,29 @@ namespace SupermarketsChain.Helpers {
                 this["JsonReportsFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Populate-SqLite-Db.sql")]
+        public string SqLiteSqlScriptLocation {
+            get {
+                return ((string)(this["SqLiteSqlScriptLocation"]));
+            }
+            set {
+                this["SqLiteSqlScriptLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=..\\..\\..\\Helper.Files\\SupermarketsChain.sqlite")]
+        public string SqLiteConnectionString {
+            get {
+                return ((string)(this["SqLiteConnectionString"]));
+            }
+            set {
+                this["SqLiteConnectionString"] = value;
+            }
+        }
     }
 }

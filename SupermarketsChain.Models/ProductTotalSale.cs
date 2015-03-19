@@ -1,6 +1,6 @@
 ﻿namespace SupermarketsChain.Models
 {
-    public class JsonSale
+    public class ProductTotalSale
     {
         public int ProductId { get; set; }
 
