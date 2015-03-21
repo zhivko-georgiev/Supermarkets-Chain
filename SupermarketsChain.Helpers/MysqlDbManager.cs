@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SupermarketsChain.Data;
 using SupermarketsChain.Models;
-using SupermarketChain.MySql.Data;
+using SupermarketsChain.MySql.Data;
 
 namespace SupermarketsChain.Helpers
 {

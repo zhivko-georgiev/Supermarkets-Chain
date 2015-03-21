@@ -97,7 +97,9 @@
     <Compile Include="DataExporters\XmlExporter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -105,6 +107,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SupermarketChain.MySql.Data\SupermarketsChain.MySql.Data.csproj">
+      <Project>{9d98eea9-87a6-4dcb-bfa4-198f574de627}</Project>
+      <Name>SupermarketsChain.MySql.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SupermarketsChain.Data\SupermarketsChain.Data.csproj">
       <Project>{17904a00-f63c-49f2-82e4-6bacac962924}</Project>
       <Name>SupermarketsChain.Data</Name>
