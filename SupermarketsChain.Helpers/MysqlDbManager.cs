@@ -25,8 +25,19 @@ namespace SupermarketsChain.Helpers
             if(mySqlDb == null){ Initialize(); }
 
             MergeVendors();
+            MergeMeasures();
 
             Console.ReadLine();
+        }
+
+        private static void MergeMeasures()
+        {
+            var mySqlMeasures = mySqlDb.Measures.GetAll();
+            var msSqlMeasures = msSqlDb.Measures.Where(x => !mySqlVendors.Contains(x.Name)).ToList();
+            if (msSqlMeasures.Count() > 0)
+            {
+                mySqlDb.Measures.SaveMeasures(msSqlMeasures);
+            }
         }
 
         private static void MergeVendors()
