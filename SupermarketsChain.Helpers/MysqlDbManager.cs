@@ -27,8 +27,24 @@ namespace SupermarketsChain.Helpers
             MergeVendors();
             MergeMeasures();
             MergeProducts();
+            MergeProductIncomes();
+            MergeProductExpenses();
 
             Console.ReadLine();
+        }
+
+        private static void MergeProductExpenses()
+        {
+            var msSqlExpenses = msSqlDb.Expenses.GroupBy(x => x.VendorId)
+                .ToDictionary(x => x.Key, x => x.Sum(r => r.Value));
+            mySqlDb.VendorExpenses.UpdateExpenses(msSqlExpenses);
+        }
+
+        private static void MergeProductIncomes()
+        {
+            var msSqlIncomes = msSqlDb.Sales.GroupBy(x => x.ProductId)
+                .ToDictionary(x => x.Key, x => x.Sum(r => r.PricePerUnit * r.Quantity));
+            mySqlDb.ProductIncome.UpdateIncomes(msSqlIncomes);
         }
 
         private static void MergeProducts()
@@ -60,7 +76,5 @@ namespace SupermarketsChain.Helpers
                 mySqlDb.Vendors.SaveVendors(msSqlVendors);
             }
         }
-
-        
     }
 }
