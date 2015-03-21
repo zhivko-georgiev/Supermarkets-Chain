@@ -14,9 +14,11 @@ namespace SupermarketsChain.MySql.Data
             Vendors = new Vendors();
             Measures = new Measures();
             Products = new Products();
+            ProductIncome = new ProductIncome();
 	    }
         public Vendors Vendors { get; set; }
         public Measures Measures { get; set; }
         public Products Products { get; set; }
+        public ProductIncome ProductIncome { get; set; }
     }
 }

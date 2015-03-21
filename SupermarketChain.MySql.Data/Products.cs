@@ -36,7 +36,7 @@ namespace SupermarketsChain.MySql.Data
         public void SaveProducts(List<Product> msSqlProducts)
         {
             mySqlDb.Open();
-            var formattedValues = msSqlProducts.Select(x => FormatValues(x)).ToList();
+            var formattedValues = msSqlProducts.Select(x => FormatProductValues(x)).ToList();
             var values = string.Join(",", formattedValues);
             var query = string.Format(
                 @"INSERT INTO product (id, name, measure_id, vendor_id)
@@ -48,7 +48,7 @@ namespace SupermarketsChain.MySql.Data
             mySqlDb.Close();
         }
 
-        private static string FormatValues(Product x)
+        private static string FormatProductValues(Product x)
         {
             var formattedValues = string.Format("('{0}', '{1}', '{2}', '{3}')", x.Id, x.Name.MysqlEscape(), x.MeasureId, x.Vendor.Id);
             return formattedValues;
