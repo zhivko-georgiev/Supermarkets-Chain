@@ -13,6 +13,8 @@
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SupermarketsChainEntities, Configuration>());
 
+            MysqlDbManager.MSSQLToMySql();
+
             //OracleDbManager.PopulateDb();
             //OracleDbManager.ExportDbToSqlServer();
             //XlsImporter.ImportSales();
