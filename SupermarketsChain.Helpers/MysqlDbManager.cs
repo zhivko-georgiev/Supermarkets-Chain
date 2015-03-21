@@ -33,7 +33,7 @@ namespace SupermarketsChain.Helpers
         private static void MergeMeasures()
         {
             var mySqlMeasures = mySqlDb.Measures.GetAll();
-            var msSqlMeasures = msSqlDb.Measures.Where(x => !mySqlVendors.Contains(x.Name)).ToList();
+            var msSqlMeasures = msSqlDb.Measures.Where(x => !mySqlMeasures.Contains(x.Name)).ToList();
             if (msSqlMeasures.Count() > 0)
             {
                 mySqlDb.Measures.SaveMeasures(msSqlMeasures);
@@ -42,11 +42,11 @@ namespace SupermarketsChain.Helpers
 
         private static void MergeVendors()
         {
-            var mySqlVendors = mySqlDb.Vendors.GetAll();
-            var msSqlVendors = msSqlDb.Vendors.Where(x => !mySqlVendors.Contains(x.Name)).ToList();
-            if (msSqlVendors.Count() > 0)
+            var mySqlMeasures = mySqlDb.Measures.GetAll();
+            var msSqlMeasures = msSqlDb.Measures.Where(x => !mySqlMeasures.Contains(x.Name)).ToList();
+            if (mySqlMeasures.Count() > 0)
             {
-                mySqlDb.Vendors.SaveVendors(msSqlVendors);
+                mySqlDb.Measures.SaveMeasures(msSqlMeasures);
             }
         }
 
