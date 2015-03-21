@@ -50,6 +50,7 @@
     <Compile Include="Measures.cs" />
     <Compile Include="ProductIncome.cs" />
     <Compile Include="Products.cs" />
+    <Compile Include="VendorsExpenses.cs" />
     <Compile Include="Vendors.cs" />
     <Compile Include="SupermarketsChainMySqlEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

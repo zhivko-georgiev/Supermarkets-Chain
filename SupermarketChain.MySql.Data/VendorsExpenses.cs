@@ -4,26 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SupermarketsChain.Models;
 
 namespace SupermarketsChain.MySql.Data
 {
-    public class ProductIncome
+    public class VendorExpenses
     {
         MySqlConnection mySqlDb;
-        public ProductIncome()
+
+        public VendorExpenses()
         {
             mySqlDb = DbContext.Get();
         }
 
-        public void UpdateIncomes(Dictionary<int, decimal> msSqlIncomes)
+        public void UpdateExpenses(Dictionary<int, decimal> msSqlExpenses)
         {
             mySqlDb.Open();
-            var formattedValues = msSqlIncomes.Select(x => FormatIncomeValues(x));
+            var formattedValues = msSqlExpenses.Select(x => FormatIncomeValues(x));
             var values = string.Join(",", formattedValues);
             var query = string.Format(
-                @"INSERT INTO product_income (product_id, income)
+                @"INSERT INTO vendor_expenses (vendor_id, value)
                   VALUES {0} 
-                  ON DUPLICATE KEY UPDATE income=VALUES(income);", values);
+                  ON DUPLICATE KEY UPDATE value=VALUES(value);", values);
             var command = mySqlDb.CreateCommand();
             command.CommandText = query;
             command.ExecuteNonQuery();
