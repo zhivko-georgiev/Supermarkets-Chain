@@ -1,12 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
-using SupermarketsChain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SupermarketsChain.Models;
 
-namespace SupermarketChain.MySql.Data
+namespace SupermarketsChain.MySql.Data
 {
     public class Vendors
     {

@@ -1,12 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
-using SupermarketsChain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SupermarketsChain.Models;
 
-namespace SupermarketChain.MySql.Data
+namespace SupermarketsChain.MySql.Data
 {
     public class Measures
     {
@@ -23,7 +23,7 @@ namespace SupermarketChain.MySql.Data
             var command = mySqlDb.CreateCommand();
             var measures = new List<string>();
 
-            command.CommandText = "SELECT name FROM measures;";
+            command.CommandText = "SELECT name FROM measure;";
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
