@@ -35,5 +35,8 @@
     <Setting Name="SqLiteConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=..\..\..\Helper.Files\SupermarketsChain.sqlite</Value>
     </Setting>
+    <Setting Name="SalesReportsZipFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Helper.Files\Sales-Reports.zip</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

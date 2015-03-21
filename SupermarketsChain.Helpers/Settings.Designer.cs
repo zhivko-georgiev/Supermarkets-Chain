@@ -154,5 +154,17 @@ namespace SupermarketsChain.Helpers {
                 this["SqLiteConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Helper.Files\\Sales-Reports.zip")]
+        public string SalesReportsZipFile {
+            get {
+                return ((string)(this["SalesReportsZipFile"]));
+            }
+            set {
+                this["SalesReportsZipFile"] = value;
+            }
+        }
     }
 }

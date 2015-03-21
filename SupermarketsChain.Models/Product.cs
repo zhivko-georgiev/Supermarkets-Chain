@@ -10,7 +10,6 @@
         [MinLength(2)]
         public string Name { get; set; }
 
-        [Required]
         public int MeasureId { get; set; }
 
         public virtual Measure Measure { get; set; }

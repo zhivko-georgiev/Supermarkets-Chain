@@ -1,13 +1,11 @@
 ﻿namespace SupermarketsChain.ConsoleClient
 {
-    using System;
     using System.Data.Entity;
     using Data;
     using Data.Migrations;
     using Helpers;
     using Helpers.DataExporters;
     using Helpers.DataImporters;
-    using Models;
 
     public static class ConsoleClient
     {
@@ -17,11 +15,11 @@
 
             //OracleDbManager.PopulateDb();
             //OracleDbManager.ExportDbToSqlServer();
-            //ReportsFromZipIntoSQL.ExportSales();
-            //PdfExporter.ExportSales("20-Jul-2014", "22-Jul-2014");
-            //XmlExporter.ExportSales("20-Jul-2014", "22-Jul-2014");
-            //JsonExporter.ExportSalesToMongoDb("01-Feb-2015", "25-Feb-2015");
-            //JsonExporter.ExportSalesToJson("01-Feb-1900", "25-Feb-2200");
+            //XlsImporter.ImportSales();
+            //PdfExporter.ExportSales("01-Jan-2015", "25-Feb-2015");
+            //XmlExporter.ExportSales("01-Jan-2015", "25-Feb-2015");
+            //JsonExporter.ExportSalesToMongoDb("20-Jul-2014", "22-Jul-2014");
+            //JsonExporter.ExportSalesToJson("20-Jul-2014", "22-Jul-2014");
             //XmlImporter.ImportExpenses();
             //SqLiteDbManager.PopulateDb();
         }

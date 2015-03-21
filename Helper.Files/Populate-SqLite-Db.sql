@@ -6,6 +6,10 @@ CREATE TABLE Products (
 
 INSERT INTO Products (Name, TaxPercent)
 VALUES ('Beer Zagorka', 10);
+INSERT INTO Products (Name, TaxPercent)
+VALUES ('Beer Becks', 30);
+INSERT INTO Products (Name, TaxPercent)
+VALUES ('Vodka Targovishte', 30);
 INSERT INTO Products (Name, TaxPercent) 
 VALUES ('Chocolate Milka', 20);
 INSERT INTO Products (Name, TaxPercent) 
