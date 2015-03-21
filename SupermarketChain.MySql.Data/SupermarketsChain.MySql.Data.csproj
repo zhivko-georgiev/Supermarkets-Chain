@@ -45,13 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbContext.cs" />
+    <Compile Include="MySQLContext.cs" />
     <Compile Include="Extensions\EscapeString.cs" />
-    <Compile Include="Measures.cs" />
-    <Compile Include="ProductIncome.cs" />
-    <Compile Include="Products.cs" />
-    <Compile Include="VendorsExpenses.cs" />
-    <Compile Include="Vendors.cs" />
+    <Compile Include="Repositories\Measures.cs" />
+    <Compile Include="Repositories\ProductIncome.cs" />
+    <Compile Include="Repositories\Products.cs" />
+    <Compile Include="Repositories\VendorsExpenses.cs" />
+    <Compile Include="Repositories\Vendors.cs" />
     <Compile Include="SupermarketsChainMySqlEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
