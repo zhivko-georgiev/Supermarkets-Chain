@@ -14,7 +14,9 @@ namespace SupermarketChain.MySql.Data
 	    {
             DbContext.Init();
             Vendors = new Vendors();
+            Measures = new Measures();
 	    }
         public Vendors Vendors { get; set; }
+        public Measures Measures { get; set; }
     }
 }
