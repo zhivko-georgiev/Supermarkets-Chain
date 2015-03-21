@@ -12,7 +12,7 @@ namespace SupermarketsChain.MySql.Data
         MySqlConnection mySqlDb;
         public ProductIncome()
         {
-            mySqlDb = DbContext.Get();
+            mySqlDb = MySQLContext.GetConnection();
         }
 
         public void UpdateIncomes(Dictionary<int, decimal> msSqlIncomes)

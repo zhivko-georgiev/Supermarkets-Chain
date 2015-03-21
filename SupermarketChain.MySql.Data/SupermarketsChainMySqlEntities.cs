@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace SupermarketsChain.MySql.Data
     {
         public SupermarketsChainMySqlEntities ()
 	    {
+            MySQLContext.PopulateDb();
+
             Vendors = new Vendors();
             Measures = new Measures();
             Products = new Products();
@@ -23,5 +26,7 @@ namespace SupermarketsChain.MySql.Data
         public Products Products { get; set; }
         public ProductIncome ProductIncome { get; set; }
         public VendorExpenses VendorExpenses { get; set; }
+
+
     }
 }

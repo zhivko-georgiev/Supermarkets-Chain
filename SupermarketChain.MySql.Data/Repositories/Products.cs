@@ -15,7 +15,7 @@ namespace SupermarketsChain.MySql.Data
 
         public Products()
         {
-            mySqlDb = DbContext.Get();
+            mySqlDb = MySQLContext.GetConnection();
         }
         public List<string> GetAll()
         {

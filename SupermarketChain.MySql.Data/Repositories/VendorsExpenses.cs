@@ -14,7 +14,7 @@ namespace SupermarketsChain.MySql.Data
 
         public VendorExpenses()
         {
-            mySqlDb = DbContext.Get();
+            mySqlDb = MySQLContext.GetConnection();
         }
 
         public void UpdateExpenses(Dictionary<int, decimal> msSqlExpenses)
