@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SupermarketsChain.Data;
+using SupermarketsChain.Models;
 
 namespace SupermarketsChain.Helpers
 {
@@ -27,42 +28,35 @@ namespace SupermarketsChain.Helpers
         public static void MSSQLToMySql(){
             if(mySqlDb == null){ Initialize(); }
             
-            msSqlDb.Vendors.ToList();
-
-            try{
-                mySqlDb.Open();
-            }
-            catch(Exception ex){
-                Console.WriteLine(ex.Message);
-            }
-
             MergeVendors();
 
-            mySqlDb.Close();
             Console.ReadLine();
         }
 
         private static void MergeVendors()
         {
             var mySqlVendors = GetAllVendors();
-            var msSqlVendors = msSqlDb.Vendors.Where(x => !mySqlVendors.Contains(x.Name)).Select(x => x.Name).ToList();
+            var msSqlVendors = msSqlDb.Vendors.Where(x => !mySqlVendors.Contains(x.Name)).ToList();
             if (msSqlVendors.Count() > 0)
             {
                 SaveVendors(msSqlVendors);
             }
         }
 
-        private static void SaveVendors(List<string> msSqlVendors)
+        private static void SaveVendors(List<Vendor> msSqlVendors)
         {
-            var values = string.Format("'{0}'",string.Join("', '", msSqlVendors));
-            var query = string.Format("INSERT INTO vendor (name) VALUES ({0});", values);
+            mySqlDb.Open();
+            var values = string.Join(",", msSqlVendors.Select(x=>"('" + x.Id + "', '" + x.Name + "')").ToList());
+            var query = string.Format("INSERT INTO vendor (id, name) VALUES {0};", values);
             var command = mySqlDb.CreateCommand();
             command.CommandText = query;
             command.ExecuteNonQuery();
+            mySqlDb.Close();
         }
 
         private static List<string> GetAllVendors()
         {
+            mySqlDb.Open();
             var command = mySqlDb.CreateCommand();
             var vendors = new List<string>();
 
@@ -72,6 +66,7 @@ namespace SupermarketsChain.Helpers
             {
                 vendors.Add(reader["name"].ToString());
             }
+            mySqlDb.Close();
             return vendors;
         }
     }
