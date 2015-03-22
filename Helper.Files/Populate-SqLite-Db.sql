@@ -23,7 +23,7 @@ VALUES ('Cake 7 days', 18);
 INSERT INTO Products (Name, TaxPercent) 
 VALUES ('Coca-Cola 0.5l', 10);
 INSERT INTO Products (Name, TaxPercent) 
-VALUES ('Coca-Cola 20l', 10);
+VALUES ('Coca-Cola 2l', 10);
 INSERT INTO Products (Name, TaxPercent) 
 VALUES ('Sprite', 10);
 INSERT INTO Products (Name, TaxPercent) 
@@ -49,12 +49,10 @@ VALUES ('Chips Ruffles', 22);
 INSERT INTO Products (Name, TaxPercent) 
 VALUES ('Caffee Lavazza', 20);
 INSERT INTO Products (Name, TaxPercent) 
-VALUES ('Nescafe 3in10', 9);
+VALUES ('Nescafe 3in1', 9);
 INSERT INTO Products (Name, TaxPercent) 
 VALUES ('Nestle LZ', 12);
 INSERT INTO Products (Name, TaxPercent) 
 VALUES ('Nestle Fitness', 13);
 INSERT INTO Products (Name, TaxPercent) 
 VALUES ('Ice Cream Aloma', 14);
-INSERT INTO Products (Name, TaxPercent) 
-VALUES ('Beer Becks', 21);

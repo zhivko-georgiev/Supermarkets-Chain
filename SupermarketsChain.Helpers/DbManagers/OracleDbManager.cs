@@ -1,4 +1,4 @@
-﻿namespace SupermarketsChain.Helpers
+﻿namespace SupermarketsChain.Helpers.DbManagers
 {
     using System;
     using System.IO;

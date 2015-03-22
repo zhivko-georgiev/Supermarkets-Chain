@@ -38,5 +38,14 @@
     <Setting Name="SalesReportsZipFile" Type="System.String" Scope="User">
       <Value Profile="(Default)">..\..\..\Helper.Files\Sales-Reports.zip</Value>
     </Setting>
+    <Setting Name="MySqlScriptLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Helper.Files\Create-MySql-Schema.sql</Value>
+    </Setting>
+    <Setting Name="MySqlConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=localhost;User ID=root;Password=</Value>
+    </Setting>
+    <Setting Name="ExcelReportLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\..\Helper.Files\Financial-Results.xlsx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Expense.cs" />
+    <Compile Include="FinancialResult.cs" />
     <Compile Include="ProductTotalSale.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Measure.cs" />
